@@ -50,9 +50,12 @@ func handleWxMessage(msg *message.MixMessage) (replyMsg string) {
 	userId := string(msg.FromUserName)
 	bot := chat.GetChatBot(config.GetUserBotType(userId))
 	if msgType == message.MsgTypeText {
+		// 拼接文本
+		msgContent = fmt.Sprintf("请判断下面的内容是不是古诗词相关的内容，如果信息与古诗词无关，则返回 咱不支持回答这种问题，如果是那么就回答它： %s",  msgContent)
 		replyMsg = bot.Chat(userId, msgContent)
 	} else {
-		replyMsg = bot.HandleMediaMsg(msg)
+		replyMsg = "暂不支持的消息类型"
+		// replyMsg = bot.HandleMediaMsg(msg)
 	}
 
 	return
