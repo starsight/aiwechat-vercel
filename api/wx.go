@@ -54,7 +54,18 @@ func handleWxMessage(msg *message.MixMessage) (replyMsg string) {
 		msgContent = fmt.Sprintf("请判断下面的内容是不是诗词领域的内容，包括鉴赏诗词或者生成诗词，如果信息与诗词无关，则返回 暂不支持回答这种问题，请问我关于古诗上的内容吧～ ，如果是相关的那么就回答它： %s",  msgContent)
 		replyMsg = bot.Chat(userId, msgContent)
 	} else {
-		replyMsg = "暂不支持的消息类型"
+		// 如果msgtype 为 MsgTypeEvent
+		// if msgType == message.MsgTypeEvent {
+		// 	if msg.Event == message.EventSubscribe {
+		// 		// 如果event为subscribe，则为关注事件
+		// 		replyMsg = "感谢到来。搜索框内回复古诗词相关的内容，AI为你解答哦 可以试试生成一篇属于你的诗歌～"
+		// 	} else {
+		// 		replyMsg = "暂不支持该类型消息"
+		// 	}
+		// } else{
+		// 	replyMsg = "暂不支持该类型消息"
+		// }
+		replyMsg = "搜索框内回复古诗词相关的内容，AI为你解答哦 可以试试生成一篇属于你的诗歌～"
 		// replyMsg = bot.HandleMediaMsg(msg)
 	}
 
